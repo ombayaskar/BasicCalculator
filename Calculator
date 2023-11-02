@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+public class BasicCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Basic Calculator");
+        System.out.println("Enter two numbers:");
+
+        double num1 = getNumberInput("Enter the first number: ");
+        double num2 = getNumberInput("Enter the second number: ");
+
+        System.out.println("Select an operation:");
+        System.out.println("1. Addition (+)");
+        System.out.println("2. Subtraction (-)");
+        System.out.println("3. Multiplication (*)");
+        System.out.println("4. Division (/)");
+        
+        int choice = getIntInput("Enter your choice (1/2/3/4): ");
+        
+        double result = 0;
+        
+        switch (choice) {
+            case 1:
+                result = num1 + num2;
+                System.out.println("Result: " + num1 + " + " + num2 + " = " + result);
+                break;
+            case 2:
+                result = num1 - num2;
+                System.out.println("Result: " + num1 + " - " + num2 + " = " + result);
+                break;
+            case 3:
+                result = num1 * num2;
+                System.out.println("Result: " + num1 + " * " + num2 + " = " + result);
+                break;
+            case 4:
+                if (num2 == 0) {
+                    System.out.println("Error: Division by zero is not allowed.");
+                } else {
+                    result = num1 / num2;
+                    System.out.println("Result: " + num1 + " / " + num2 + " = " + result);
+                }
+                break;
+            default:
+                System.out.println("Invalid choice. Please select a valid operation.");
+        }
+        
+        scanner.close();
+    }
+
+    private static double getNumberInput(String message) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(message);
+        while (!scanner.hasNextDouble()) {
+            System.out.print("Please enter a valid number: ");
+            scanner.next();
+        }
+        return scanner.nextDouble();
+    }
+
+    private static int getIntInput(String message) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(message);
+        while (!scanner.hasNextInt()) {
+            System.out.print("Please enter a valid integer: ");
+            scanner.next();
+        }
+        return scanner.nextInt();
+    }
+}
